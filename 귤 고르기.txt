@@ -1,0 +1,23 @@
+//귤 고르기
+import java.util.*;
+class Solution {
+    public int solution(int k, int[] tangerine) {
+        int answer = 0;
+        Map<Integer,Integer> hs=new HashMap<>();
+        for(int i=0;i<tangerine.length;i++){
+            int temp=tangerine[i];
+            hs.put(temp,hs.getOrDefault(temp,0)+1);//getOrDefault
+        }
+        List<Integer> li = new ArrayList<>(hs.values());
+        //내림차순 정렬
+        Collections.sort(li,Collections.reverseOrder());
+        for(Integer a: li){
+            k-=a;
+            answer++;
+            if(k<1){
+                return answer;
+            }
+        }
+        return answer;
+    }
+}
