@@ -1,0 +1,16 @@
+//3*n 타일링
+import java.util.*;
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        long[] arr=new long[5001];
+        int mod= 1000000007;
+        arr[0]=1;
+        arr[2]=3;
+        for(int i=4;i<=n;i+=2){
+            arr[i]=(arr[i-2]*4%mod-arr[i-4]%mod+mod)%mod;
+        }
+        answer=(int)arr[n];
+        return answer;
+    }
+}
