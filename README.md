@@ -13,7 +13,7 @@
     <a href="KaKao">KaKaO</a>
   </li>
   <li>
-    <a href="월간코드 챌린지">월간코드 챌린지</a>
+    <a href="World Code">월간코드 챌린지</a>
   </li>
 </ul>
 
