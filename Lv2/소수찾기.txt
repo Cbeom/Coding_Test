@@ -1,0 +1,28 @@
+//소수찾기
+import java.util.*;
+class Solution {
+    HashSet<Integer> hs=new HashSet<>();
+    void recursive(String comb,String others){
+            if(!comb.equals(""))
+                hs.add(Integer.valueOf(comb));
+            for(int i=0;i<others.length();i++){
+                recursive(comb+others.charAt(i),others.substring(0,i)+others.substring(i+1));
+            }
+        }
+    public int solution(String numbers) {
+        int answer = 0;
+        recursive("",numbers);
+        for(int i:hs){
+            int j;
+            for(j=2;j<i;j++){
+                if(i%j==0){
+                    break;
+                }
+            }
+            if(i==j){
+                answer++;
+            }
+        }
+        return answer;
+    }
+}
