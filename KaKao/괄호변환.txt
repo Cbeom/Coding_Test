@@ -1,0 +1,61 @@
+//괄호 변환
+//2020 KAKAO 
+//재귀함수
+import java.util.*;
+class Solution {
+    public String solution(String p) {
+        String answer = "";
+        String u="";
+        String v="";
+        int idx=0;
+        //1.
+        if(p==null ||check(p)){
+            return p;
+        }
+        StringBuilder sb=new StringBuilder(p);
+        //2.
+        for(int i=0;i<sb.length();i++){
+            if(sb.charAt(i)=='(') idx++;
+            else idx--;
+            if(idx==0){
+                u=sb.substring(0,i+1);
+                if(i!=sb.length()-1){
+                    v=sb.substring(i+1,sb.length());
+                    break;
+                }
+            }
+        }
+        //3.
+        if(check(u)){
+            //3-1
+            return u+solution(v);
+        } 
+        //4번
+        else {
+            //4-1
+            answer+="(";
+            //4-2
+            answer+=solution(v);
+            //4-3
+            answer+=")";
+            //4-4
+            String temp = u.substring(1, u.length() - 1);
+            for(char c : temp.toCharArray()){  
+                if(c == '(') answer += ")";
+                else answer += "(";
+            }
+            //4-5
+            return answer;
+        }
+    }
+    public boolean check(String s) {
+        int idx=0;
+        for(int i=0;i<s.length();i++){
+            if(s.charAt(i)=='(') idx++;
+            else idx--;
+            
+            if(idx<0) return false;
+        }
+        return idx==0;
+    }
+}
