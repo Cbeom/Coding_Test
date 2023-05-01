@@ -22,7 +22,7 @@
 <br>
 <ul>
   <li>
-    <a href="World Code">SQL</a>
+    <a href="World Code">Sql</a>
   </li>
   <li>
     <a href="Lv1">Lv1</a>
