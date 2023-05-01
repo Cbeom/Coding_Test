@@ -1,0 +1,31 @@
+//기능개발
+//스택 큐
+import java.util.*;
+class Solution {
+    public int[] solution(int[] progresses, int[] speeds) {
+        Queue<Integer> q = new LinkedList<>();
+        for(int i=0;i<speeds.length;i++){
+            int a=(100-progresses[i])/speeds[i]+
+                ((100-progresses[i])%speeds[i]==0?0:1);
+            q.offer(a);
+        }
+        ArrayList<Integer> res = new ArrayList<>();
+        int cnt=1;
+        int now=q.poll();
+        while(!q.isEmpty()){
+            int next=q.poll();
+            if(now>=next) cnt++;
+            else{
+                res.add(cnt);
+                now=next;
+                cnt=1;
+            }
+        }
+        res.add(cnt);
+        int[] answer = new int[res.size()];
+        for(int i=0;i<answer.length;i++){
+            answer[i]=res.get(i);
+        }
+        return answer;
+    }
+}
