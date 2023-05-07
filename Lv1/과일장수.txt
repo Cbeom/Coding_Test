@@ -1,0 +1,23 @@
+//과일장수
+import java.util.*;
+class Solution {
+    public int solution(int k, int m, int[] score) {
+        int answer = 0;
+        Arrays.sort(score);
+        Stack<Integer> s = new Stack<>(); 
+        for(int i=0;i<score.length;i++){
+            s.push(score[i]);
+        }
+        while(s.size()>=m){
+            int min=100;
+            for(int i=0;i<m;i++){
+                if(min>s.peek()){
+                    min=s.peek();
+                }
+                s.pop();
+            }
+            answer+=min*m;
+        }
+        return answer;
+    }
+}
