@@ -26,6 +26,7 @@
      <ul>
       <li><a href="Sql/String, Date">String, Date</a></li>
       <li><a href="Sql/Group By">Group By</a></li>
+       <li><a href="Sql/Select By">Select</a></li>
      </ul>
   </li>
   <li>
