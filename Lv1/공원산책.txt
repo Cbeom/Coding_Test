@@ -1,0 +1,51 @@
+//공원산책
+// 이동전 화인요소 1.공원을 벗어나느가 2. 장애물을 만나는가
+class Solution {
+    int sx=0, sy=0;
+    public int[] solution(String[] park, String[] routes) {
+        int h=park.length; //공원의 세로크기
+        int w=park[0].length(); // 공원의 가로크기
+        //시작점 찾기
+        StartPoint(park,h);
+        //routes
+        for(int i=0;i<routes.length;i++){
+            String s=routes[i].split(" ")[0];
+            int len = Integer.parseInt(routes[i].split(" ")[1]);
+            int nx=sx;
+            int ny=sy;
+            for(int j=0;j<len;j++){
+                if(s.equals("E")){
+                    nx++;
+                }
+                else if(s.equals("W")){
+                    nx--;
+                }
+                else if(s.equals("S")){
+                    ny++;
+                }
+                else if(s.equals("N")){
+                    ny--;
+                }
+                if(nx>=0 && ny>=0 && nx<w && ny<h){
+                    if(park[ny].indexOf("X",nx)==nx){
+                        break;
+                    }
+                    if(j==len-1){
+                        sx=nx;
+                        sy=ny;
+                    }
+                }
+            }
+        }
+        int[] answer = {sy, sx};
+        return answer;
+    }
+    public void StartPoint(String[] park,int h){
+        for(int i=0;i<h;i++){
+            if(park[i].indexOf("S") != -1){
+                sy=i;
+                sx=park[i].indexOf("S");
+            }
+        }
+    }
+}
