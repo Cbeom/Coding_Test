@@ -29,6 +29,7 @@
       <li><a href="Sql/Select">Select</a></li>
       <li><a href="Sql/SUM, MAX, MIN">SUM, MAX, MIN</a></li>
       <li><a href="Sql/Is Null">Is Null</a></li>
+      <li><a href="Sql/Join">Join</a></li>
      </ul>
   </li>
   <li>
