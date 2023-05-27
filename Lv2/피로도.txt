@@ -1,0 +1,23 @@
+//피로도
+//입장 피로도 순으로 정렬 x, 소모피로도 순으로 정렬 x
+//완전탐색 알고리즘
+import java.util.*;
+class Solution {
+    int answer = 0;
+    boolean[] visit;
+    public int solution(int k, int[][] d) {
+        visit=new boolean[d.length];
+        dfs(0,k,d);
+        return answer;
+    }
+    void dfs(int depth,int k,int[][] d){
+        for(int i=0;i<d.length;i++){
+            if(!visit[i] && d[i][0]<=k){
+                visit[i]=true;
+                dfs(depth+1,k-d[i][1],d);
+                visit[i]=false;
+            }
+        }
+        answer=Math.max(answer,depth);
+    }
+}
