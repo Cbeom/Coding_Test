@@ -1,0 +1,25 @@
+//[3차] 파일명 정렬
+import java.util.*;
+class Solution {
+    public String[] solution(String[] files) {
+        Arrays.sort(files,(o1,o2)->{
+            String[] part1 = sub(o1);
+            String[] part2 = sub(o2);
+            int headcom=part1[0].compareTo(part2[0]);
+            int numcom=Integer.parseInt(part1[1]) - Integer.parseInt(part2[1]);
+            if(headcom==0){
+                if(numcom==0){
+                    return 0;
+                }
+                return numcom;
+            }
+            return headcom;
+        });
+        return files;
+    }
+    static String[] sub(String s){
+        String s1=s.toLowerCase();
+        String[] parts = s1.split("(?<=\\D)(?=\\d)|(?<=\\d)(?=\\D)");
+        return parts;
+    }
+}
