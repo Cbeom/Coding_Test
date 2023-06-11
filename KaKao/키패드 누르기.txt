@@ -1,0 +1,43 @@
+//키패드 누르기
+import java.util.*;
+class Solution {
+    public String solution(int[] numbers, String hand) {
+        String answer = "";
+        int lefth=10;
+        int righth=12;
+        
+        for(int n:numbers){
+            if(n==1||n==4||n==7){
+                answer+="L";
+                lefth = n;
+            } else if(n==3||n==6||n==9){
+                answer+="R";
+                righth = n;
+            }
+            else {
+                if(n==0){
+                    n+=11;
+                }
+                int lh=(Math.abs(n-lefth))/3+(Math.abs(n-lefth))%3;
+                int rh=(Math.abs(n-righth))/3+(Math.abs(n-righth))%3;
+                if(lh==rh){
+                    if(hand.equals("right")){
+                        answer+="R";
+                        righth=n;
+                    } else {
+                        answer+="L";
+                        lefth = n;
+                    }
+                }
+                else if(lh>rh){
+                    answer+="R";
+                    righth = n;
+                }else{
+                    answer+="L";
+                    lefth = n;
+                }
+            }
+        }
+        return answer;
+    }
+}
