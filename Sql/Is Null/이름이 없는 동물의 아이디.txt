@@ -1,0 +1,6 @@
+-- 이름이 없는 동물의 아이디
+-- Is Null
+SELECT ANIMAL_ID
+FROM ANIMAL_INS
+WHERE NAME is null
+ORDER BY ANIMAL_ID ASC;
