@@ -1,0 +1,20 @@
+//콜라 문제
+class Solution {
+    public int solution(int a, int b, int n) {
+        int answer = 0;
+        int total=0; //총 받은 콜라
+        while(n>=a){
+            int cnt=0; //남은 콜라 빈병
+            total+=b*(n/a);
+            if(n%a==0){
+                n=b*(n/a);
+            } else {
+                cnt=n%a;
+                n=b*(n/a);
+                n+=cnt;
+            }
+        }
+        answer=total;
+        return answer;
+    }
+}
