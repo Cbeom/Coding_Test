@@ -1,0 +1,6 @@
+-- 상품 별 오프라인 매출 구하기
+SELECT p.PRODUCT_CODE, SUM(p.PRICE*o.SALES_AMOUNT) AS SALES
+FROM PRODUCT p JOIN OFFLINE_SALE o
+ON p.product_id=o.product_id
+GROUP BY p.product_code
+ORDER BY sales DESC, product_code;
