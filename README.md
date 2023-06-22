@@ -41,6 +41,9 @@
   <li>
     <a href="Lv3">Lv3</a>
   </li>
+ <li>
+    <a href="파이썬">파이썬</a>
+  </li>
   <li>
     <a href="KaKao">KaKaO</a>
   </li>
