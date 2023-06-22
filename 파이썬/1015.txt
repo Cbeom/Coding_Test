@@ -1,0 +1,10 @@
+# 백준 1015
+a=int(input())
+b=list(map(int,input().split()))
+c=sorted(b)
+li=[]
+for i in range(a):
+    idx=c.index(b[i])
+    li.append(idx)
+    c[idx]=-1
+print(*li)
