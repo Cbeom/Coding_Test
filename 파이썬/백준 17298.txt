@@ -1,0 +1,14 @@
+# 오큰수 구하기 백준 17298번
+# 스택에 새로 들어오는 수가 top에 존재하는 수보다 크면 그 수는 오큰수가 된다.
+import sys
+
+input=sys.stdin.readline
+N=int(input())
+A=list(map(int, input().split()))
+answer=[-1]*N
+myStack=[]
+for i in range(N):
+    while myStack and A[myStack[-1]] <A[i]: #오큰수 조건
+        answer[myStack.pop()]=A[i] #정답 리스트에 오큰수 저장
+    myStack.append(i)
+print(*answer)
