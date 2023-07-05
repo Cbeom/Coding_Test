@@ -1,0 +1,29 @@
+# ATM 인출 시간 계산하기 백준 11399
+# 가장 빠른 시간에 인출하는 방법은 그리디 방식으로 해결
+import sys
+
+input=sys.stdin.readline
+n=int(input())
+a=list(map(int, input().split()))
+s=[0]*n
+# 삽입정렬
+for i in range(1,n):
+    insert_point=i
+    insert_value=a[i]
+    for j in range(i-1,-1,-1):
+        if a[j]<a[i]:
+            insert_point=j+1
+            break
+        if j==0:
+            insert_point=0
+
+    for j in range(i,insert_point,-1):
+        a[j]=a[j-1]
+    a[insert_point]=insert_value
+# 합배열
+s[0]=a[0]
+sum=s[0]
+for i in range(1,n):
+    s[i]=s[i-1]+a[i]
+    sum+=s[i]
+print(sum)
