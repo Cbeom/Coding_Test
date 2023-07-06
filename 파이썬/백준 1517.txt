@@ -1,0 +1,45 @@
+# 백준 1517
+# 시간 복잡도가 n^2이면 시간이 초과되어서 nlogn의 시간복잡도를 가진 병합정렬을 사용
+import sys
+
+input=sys.stdin.readline
+result=0
+n=int(input())
+a=list(map(int, input().split()))
+a.insert(0,0)
+temp=[0] * int(n+1)
+
+# 병합정렬 구현
+def merge_sort(s,e):
+    global result
+    if e-s < 1:
+        return
+    m=int(s+(e-s) / 2)
+    merge_sort(s, m)
+    merge_sort(m+1, e)
+    for i in range(s, e+1):
+        temp[i]=a[i]
+    k=s
+    index1=s
+    index2=m+1
+    while index1 <=m and index2 <=e:
+        if temp[index1] > temp[index2]:
+            a[k]=temp[index2]
+            result=result+index2-k #swap 값 카운트
+            k+=1
+            index2+=1
+        else:
+            a[k]=temp[index1]
+            k+=1
+            index1+=1
+    while index1 <= m:
+        a[k]=temp[index1]
+        k+=1
+        index1+=1
+    while index2 <=e:
+        a[k]=temp[index2]
+        k+=1
+        index2+=1
+
+merge_sort(1,n)
+print(result)
