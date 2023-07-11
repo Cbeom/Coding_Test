@@ -1,0 +1,14 @@
+# 백준 2745 진법변환
+# 2<=b<=36, n<=10억
+import sys
+
+input=sys.stdin.readline
+n,b=input().split(" ")
+n=n[::-1]
+b=int(b)
+num = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+answer=0
+
+for i in range(len(n)):
+    answer+=(b**i)*(num.index(n[i]))
+print(answer)
