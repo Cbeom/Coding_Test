@@ -1,0 +1,16 @@
+# 백준 1934
+# 최고 공배수 구하기
+# 최소 공배수 = a*b/최대공약수 유클리드 호제법으로 최대 공약수 구하기
+import sys
+t=int(input())
+
+def gcd(a, b):
+    if b==0:
+        return a
+    else:
+        return gcd(b,a%b)
+
+for i in range(t):
+    a, b=map(int, input().split())
+    result= a*b // gcd(a, b)
+    print(result)
