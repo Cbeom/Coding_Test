@@ -1,0 +1,7 @@
+-- 년, 월, 성별 별 상품 구매 회원 수 구하기
+SELECT DATE_FORMAT(o.SALES_DATE,'%Y') as 'YEAR',DATE_FORMAT(o.SALES_DATE,'%m') as 'MONTH',
+u.GENDER, count(DISTINCT u.USER_ID) as 'USERS'
+FROM ONLINE_SALE  AS o 
+    INNER JOIN USER_INFO  AS u ON o.user_id = u.user_id
+GROUP BY YEAR, MONTH, u.GENDER HAVING u.GENDER is not null
+ORDER BY YEAR, MONTH, u.GENDER ASC;
