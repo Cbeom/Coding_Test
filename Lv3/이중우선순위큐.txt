@@ -1,0 +1,28 @@
+//이중우선순위큐
+import java.util.*;
+class Solution {
+    public int[] solution(String[] oper) {
+        int[] answer = new int[2];
+        List<Integer> li=new ArrayList<>();
+        for(int i=0;i<oper.length;i++){
+            String[] s=oper[i].split(" ");
+            if(s[0].equals("I")){
+                int n=Integer.parseInt(s[1]);
+                li.add(n);
+                Collections.sort(li);
+            } else if(s[0].equals("D")){
+                if(s[1].equals("-1") && !li.isEmpty()){
+                    li.remove(0);
+                } else if(s[1].equals("1") && !li.isEmpty()){
+                    li.remove(li.size()-1);
+                }
+            }
+        }
+        Collections.sort(li);
+        if(li.size()>1){
+            answer[1]=li.get(0);
+            answer[0]=li.get(li.size()-1);
+        }
+        return answer;
+    }
+}
