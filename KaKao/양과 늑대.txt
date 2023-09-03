@@ -1,0 +1,46 @@
+//양과 늑대
+//2022 카카오
+import java.util.*;
+class Solution {
+    static ArrayList<Integer>[] childs;
+    static int[] visit;
+    static int cnt;
+    public int solution(int[] info, int[][] edges) {
+        visit=info;
+        childs=new ArrayList[info.length];
+        for(int[] i:edges){
+            int parent=i[0];
+            int child=i[1];
+            if(childs[parent]==null){
+                childs[parent]=new ArrayList<>();
+            }
+            childs[parent].add(child);
+        }
+        List<Integer> li=new ArrayList<>();
+        li.add(0);
+        dfs(0,0,0,li);
+        return cnt;
+    }
+    static void dfs(int idx,int sheep,int wolf, List<Integer> nPos){
+        if(visit[idx]==0){
+            sheep++;
+        } else{
+            wolf++;
+        }
+        if(wolf>=sheep){
+            return;
+        }
+        cnt=Math.max(sheep,cnt);
+        List<Integer> li=new ArrayList<>();
+        li.addAll(nPos);
+        li.remove(Integer.valueOf(idx));
+        if(childs[idx]!=null){
+            for(int child:childs[idx]){
+                li.add(child);
+            }
+        }
+        for(int next:li){
+            dfs(next,sheep,wolf,li);
+        }
+    }
+}
