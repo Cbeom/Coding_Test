@@ -1,0 +1,66 @@
+//카카오 2020 인턴쉽
+//수식 최대화
+//완전탐색
+import java.util.*;
+class Solution {
+    private static char[] operators = {'+', '-', '*'};
+    private static char[] permArr = new char[3];
+    private static boolean[] visited = new boolean[3];
+    private static long maxResult = Long.MIN_VALUE;
+    
+    public long solution(String expression) {
+        long answer = 0;
+        List<Long> nums = new ArrayList<>();
+        List<Character> ops = new ArrayList<>();
+        StringBuilder sb=new StringBuilder();
+        for(char ch:expression.toCharArray()){
+            if(Character.isDigit(ch)){
+                sb.append(ch);
+            } else{
+                nums.add(Long.parseLong(sb.toString()));
+                sb=new StringBuilder();
+                ops.add(ch);
+            }
+        }
+        nums.add(Long.parseLong(sb.toString()));
+        per(0,ops,new ArrayList<>(),nums);
+        answer=maxResult;
+        return answer;
+    }
+     public static void per(int depth, List<Character> ops, List<Character> permOps, List<Long> nums) {
+         if(depth==3){
+             List<Character> copyOps=new ArrayList<>(ops);
+             List<Long> copyNums=new ArrayList<>(nums);
+             for(char op: permArr){
+                 for(int i=0;i<copyOps.size();i++){
+                     if(copyOps.get(i)==op){
+                         long result=cal(copyNums.get(i), copyNums.get(i + 1), op);
+                         copyNums.set(i, result);
+                         copyNums.remove(i + 1);
+                         copyOps.remove(i);
+                         i--;
+                     }
+                 }
+             }
+             maxResult=Math.max(maxResult,Math.abs(copyNums.get(0)));
+             return;
+         }
+         for(int i=0;i<3;i++){
+             if(!visited[i]){
+                 visited[i]=true;
+                 permArr[depth] = operators[i];
+                 per(depth + 1, ops, permOps, nums);
+                 visited[i] = false;
+             }
+         }
+     }
+    public static long cal(long num1, long num2, char op){
+        if(op=='+'){
+            return num1+num2;
+        } else if (op == '-') {
+            return num1 - num2;
+        } else {
+            return num1 * num2;
+        }
+    }
+}
