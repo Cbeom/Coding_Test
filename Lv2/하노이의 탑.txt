@@ -1,0 +1,24 @@
+//하노이의 탑
+//dfs
+import java.util.*;
+class Solution {
+    List<int[]> li=new ArrayList<>();
+    public int[][] solution(int n) {
+        int[][] answer = {};
+        hanoi(1,2,3,n);
+        answer=new int[li.size()][];
+        for(int i=0;i<li.size();i++){
+            answer[i]=li.get(i);
+        }
+        return answer;
+    }
+    void hanoi(int start,int from,int end,int n){
+        if(n==1){
+            li.add(new int[]{start,end});
+            return;
+        }
+        hanoi(start,end,from,n-1);
+        li.add(new int[]{start,end});
+        hanoi(from,start,end,n-1);
+    }
+}
