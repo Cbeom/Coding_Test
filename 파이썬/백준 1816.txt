@@ -1,0 +1,14 @@
+# 백준 1816
+# 암호 키
+import sys
+n=int(input())
+
+for _ in range(n):
+    object=int(input())
+    for number in range(2,1000001):
+        if(object%number==0):
+            print("NO")
+            break
+        if(number==1000000):
+            print("YES")
+            break
