@@ -1,0 +1,15 @@
+# 백준 1145
+# 적어도 대부분의 배수
+import sys
+a=list(map(int,input().split()))
+cnt=0
+i=1
+while cnt<3:
+    cnt=0
+    for n in a:
+        if i% n==0:
+            cnt+=1
+        if cnt==3:
+            break
+    i+=1
+print(i-1)

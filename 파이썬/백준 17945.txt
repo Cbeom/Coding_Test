@@ -1,0 +1,10 @@
+# 백준 17945
+# 통학의 신
+import sys
+a,b=map(int,input().split())
+li=[]
+for x in range(-1000,1001):
+    if(x*x+2*a*x==-b):
+        li.append(x)
+li.sort()
+print(*li)
