@@ -1,0 +1,28 @@
+//모음사전
+// a,e,i,o,u
+//a(1) -> aa(2) -> aaa(3) -> .. -> aaaae(6)-> aaaai(7)-> aaae(10)
+import java.util.*;
+class Solution {
+    static List<String> li;
+    static String[] words={"A","E","I","O","U"};
+    public int solution(String word) {
+        int answer = 0;
+        li=new ArrayList<>();
+        dfs("",0);
+        int size=li.size();
+        for(int i=0;i<size;i++){
+            if(li.get(i).equals(word)){
+                answer=i;
+                break;
+            }
+        }
+        return answer;
+    }
+    static void dfs(String str,int len){
+        li.add(str);
+        if(len==5) return;
+        for(int i=0;i<5;i++){
+            dfs(str+words[i],len+1);
+        }
+    }
+}
