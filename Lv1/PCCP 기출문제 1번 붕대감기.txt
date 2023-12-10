@@ -1,0 +1,37 @@
+//PCCP 기출문제 1번 붕대감기
+// bandage = 시전시간, 1초당 회복량, 추가 회복량
+import java.util.*;
+class Solution {
+    public int solution(int[] bandage, int health, int[][] attacks) {
+        int answer = health;
+        int idx=0;//연속 성공 카운트
+        int cnt=0;
+        int time=attacks[attacks.length-1][0];//시간
+        for(int i=0;i<=time;i++){
+            if(attacks[cnt][0]==i){
+                answer-=attacks[cnt][1];
+                if(answer<1){
+                    return -1;
+                }
+                cnt++;
+                idx=0;
+                continue;
+            }
+            else if(answer<health){
+                answer+=bandage[1];
+                idx++;
+                // 14번 테스트 결국 연속성공 이상이어도 추가 회복 == X >= O
+                if(idx>=bandage[0]){ 
+                    answer+=bandage[2];
+                }
+                if(answer>health){
+                    answer=health;
+                }
+            }
+            else {
+                idx++;
+            }
+        }
+        return answer;
+    }
+}
